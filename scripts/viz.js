@@ -82,5 +82,4 @@ setInterval(function(){
   var employmentWeight = 1.3;
   var environmentWeight = 1.3;
   styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
-  console.log("Working");
 },5000);
