@@ -35,7 +35,7 @@ d3.json("/json/countries.json", function(error, world) {
       .attr("d", path);
   d3.json("/json/helpagetopo.json", function(error, world) {
     drawMap(world);
-    styleCountries();
+    styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
   });
 });
 
@@ -59,19 +59,28 @@ function drawMap(world){
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 }
 
-function styleCountries() {
-  var weightingAverage = (incomeWeight + healthWeight + employmentWeight + environmentWeight) / 4;
+function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   var indexScale = d3.scale.linear()
-      .domain([0, 100*weightingAverage])
+      .domain([0, 100])
       .range([0, 10]);
   $(".country").each(function(index) {
     var income = $(this).attr("data-income");
     var health = $(this).attr("data-health");
     var employment = $(this).attr("data-employment");
     var environment = $(this).attr("data-environment");
-    var index = (income*incomeWeight + health*healthWeight + employment*employmentWeight + environment*environmentWeight) / 4;
+    var index = (income*inWeight + health*heWeight + employment*emWeight + environment*enWeight) / 4;
     var remapped = Math.floor(indexScale(index));
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
   });
 }
+
+
+setInterval(function(){
+  var incomeWeight = 0.1;
+  var healthWeight = 1.3;
+  var employmentWeight = 1.3;
+  var environmentWeight = 1.3;
+  styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+  console.log("Working");
+},5000);
