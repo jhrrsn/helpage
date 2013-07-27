@@ -80,8 +80,9 @@ body {
 	font-size:25px;
 }
 
-.slider {
+.slider, .slider-title {
 	display: inline-block;
 	width: 20%;
 	margin: 0 2%;
+	text-align: center;
 }
