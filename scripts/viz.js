@@ -86,5 +86,8 @@ setInterval(function(){
 
 
 $(function() {
-    $( "#slider-income" ).slider();
+    $( ".income" ).slider();
+    $( ".health" ).slider();
+    $( ".employment" ).slider();
+    $( ".environment" ).slider();
   });
