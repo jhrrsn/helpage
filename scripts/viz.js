@@ -19,7 +19,7 @@ var tooltip = d3.select("body")
   .style("position", "absolute")
   .style("z-index", "10")
   .style("visibility", "hidden")
-  .text("a simple tooltip");
+  .text(".");
 
 var svg = d3.select("#map").append("svg")
     .attr("width", width)
@@ -39,7 +39,11 @@ d3.json("/json/countries.json", function(error, world) {
           .data(topojson.feature(world, world.objects.helpageindex).features)
         .enter().append("path")
           .attr("class", function(d) {
-            var index = d["properties"]["Overall Index"];
+            var income = d["properties"]["Income Security Sub-Index"];
+            var health = d["properties"]["Health Status Sub-Index"];
+            var employment = d["properties"]["Employment and Education Sub-Index"];
+            var environment = d["properties"]["Age-Friendly Environment Sub-Index"];
+            var index = (income + health + employment + environment) / 4
             var remapped = Math.floor(index/10);
             return "q" + remapped + "-9";
           })
