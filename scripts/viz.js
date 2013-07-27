@@ -17,8 +17,7 @@ var path = d3.geo.path()
 var graticule = d3.geo.graticule();
 
 var svg = d3.select("#map").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", width);
 
 svg.append("path")
     .datum(graticule)
