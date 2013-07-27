@@ -24,9 +24,18 @@ svg.append("path")
     .attr("class", "graticule")
     .attr("d", path);
 
-d3.json("/json/helpagetopo.json", function(error, world) {
+d3.json("/json/countriestopo.json", function(error, world) {
   svg.append("g")
         .attr("class", "countries")
+      .selectAll("path")
+        .data(topojson.feature(world, world.objects.countries).features)
+      .enter().append("path")
+      .attr("d", path);
+});
+
+d3.json("/json/helpagetopo.json", function(error, world) {
+  svg.append("g")
+        .attr("class", "index")
       .selectAll("path")
         .data(topojson.feature(world, world.objects.helpageindex).features)
       .enter().append("path")
