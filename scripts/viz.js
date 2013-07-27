@@ -75,36 +75,65 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   });
 }
 
-
-setInterval(function(){
-  var incomeWeight = 0.1;
-  var healthWeight = 1.3;
-  var employmentWeight = 1.3;
-  var environmentWeight = 1.3;
-  styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
-},5000);
-
-
 $(function() {
   $( ".income" ).slider({
     value: 100,
     min: 0,
-    max: 100
+    max: 100,
+    change: function(){ 
+      var currentValue = incomeWeight;
+      var newValue = $(this).slider('value')/100;
+      incomeWeight = newValue;
+      change = currentValue - newValue;
+      healthWeight += change/3;
+      employmentWeight += change/3;
+      environmentWeight += change/3;
+      styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+    }
   });
   $( ".health" ).slider({
     value: 100,
     min: 0,
-    max: 100
+    max: 100,
+    change: function(){ 
+      var currentValue = healthWeight;
+      var newValue = $(this).slider('value')/100;
+      healthWeight = newValue;
+      change = currentValue - newValue;
+      incomeWeight += change/3;
+      employmentWeight += change/3;
+      environmentWeight += change/3;
+      styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+    }
   });
   $( ".employment" ).slider({
     value: 100,
     min: 0,
-    max: 100
+    max: 100,
+    change: function(){ 
+      var currentValue = employmentWeight;
+      var newValue = $(this).slider('value')/100;
+      employmentWeight = newValue;
+      change = currentValue - newValue;
+      healthWeight += change/3;
+      incomeWeight += change/3;
+      environmentWeight += change/3;
+      styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+    }
   });
   $( ".environment" ).slider({
     value: 100,
     min: 0,
-    max: 100
+    max: 100,
+    change: function(){ 
+      var currentValue = environmentWeight;
+      var newValue = $(this).slider('value')/100;
+      environmentWeight = newValue;
+      change = currentValue - newValue;
+      healthWeight += change/3;
+      employmentWeight += change/3;
+      incomeWeight += change/3;
+      styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+    }
   });
 });
-
