@@ -86,8 +86,25 @@ setInterval(function(){
 
 
 $(function() {
-    $( ".income" ).slider();
-    $( ".health" ).slider();
-    $( ".employment" ).slider();
-    $( ".environment" ).slider();
+  $( ".income" ).slider({
+    value: 100,
+    min: 0,
+    max: 100
   });
+  $( ".health" ).slider({
+    value: 100,
+    min: 0,
+    max: 100
+  });
+  $( ".employment" ).slider({
+    value: 100,
+    min: 0,
+    max: 100
+  });
+  $( ".environment" ).slider({
+    value: 100,
+    min: 0,
+    max: 100
+  });
+});
+
