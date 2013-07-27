@@ -83,3 +83,8 @@ setInterval(function(){
   var environmentWeight = 1.3;
   styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
 },5000);
+
+
+$(function() {
+    $( "#slider-income" ).slider();
+  });
