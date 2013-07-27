@@ -1,9 +1,9 @@
 var width = $('#map').width(),
-    height = 960;
+    height = width/1.6;
 
 var projection = d3.geo.mercator()
     .scale((width + 1) / 2 / Math.PI)
-    .translate([width / 2, height / 2])
+    .translate([width / 2, height / 1.5])
     .precision(.1);
 
 var indexScale = d3.scale.linear()
@@ -17,7 +17,8 @@ var path = d3.geo.path()
 var graticule = d3.geo.graticule();
 
 var svg = d3.select("#map").append("svg")
-    .attr("width", width);
+    .attr("width", width)
+    .attr("height", height);
 
 svg.append("path")
     .datum(graticule)
@@ -46,4 +47,3 @@ d3.json("/json/countries.json", function(error, world) {
   });
 });
 
-d3.select(self.frameElement).style("height", height + "px");
