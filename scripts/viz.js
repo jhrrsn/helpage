@@ -24,7 +24,7 @@ svg.append("path")
     .attr("class", "graticule")
     .attr("d", path);
 
-d3.json("/json/countriestopo.json", function(error, world) {
+d3.json("/json/countries.json", function(error, world) {
   svg.append("g")
         .attr("class", "countries")
       .selectAll("path")
