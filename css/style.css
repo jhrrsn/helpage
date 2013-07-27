@@ -80,4 +80,8 @@ body {
 	font-size:25px;
 }
 
-
+.slider {
+	display: inline-block;
+	width: 20%;
+	margin: 0 2%;
+}
