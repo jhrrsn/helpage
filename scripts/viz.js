@@ -10,20 +10,20 @@ var indexScale = d3.scale.linear()
 indexScale.domain([0, 100]);
 indexScale.range([0, 10]);
 
-
 var path = d3.geo.path()
     .projection(projection);
 
-var graticule = d3.geo.graticule();
+var tooltip = d3.select("body")
+  .append("div")
+  .attr('id', 'tooltip')
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .text("a simple tooltip");
 
 var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
-
-svg.append("path")
-    .datum(graticule)
-    .attr("class", "graticule")
-    .attr("d", path);
 
 d3.json("/json/countries.json", function(error, world) {
   svg.append("g")
@@ -43,7 +43,13 @@ d3.json("/json/countries.json", function(error, world) {
             var remapped = Math.floor(index/10);
             return "q" + remapped + "-9";
           })
-          .attr("d", path);
+          .attr("d", path)
+          .on("mouseover", function(d){ 
+            tooltip.style("visibility", "visible");
+            $("#tooltip").text(d["properties"]["Country"]);
+          })
+          .on("mousemove", function(){ return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+          .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
   });
 });
 
