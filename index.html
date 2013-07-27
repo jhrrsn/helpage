@@ -4,10 +4,30 @@
 	<title>DataDive - HelpAge - 27/07/13</title>
 </head>
 <body>
-This shit is totally working yo!
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
 <script>
+var width = $(window).width();
+var height = 500;
+
+var svg = d3.select('body').append('svg')
+.attr('width', width)
+.attr('height', height);
+
+var group = svg.append('g');
+
+var projection = d3.geo.mercator();
+
+d3.json('helpageindex.json', function(collection) {
+	group.selectAll('path')
+	.data(collection.features)
+	.enter().append('path')
+	.attr('d', d3.geo.path().projection(projection))
+	.style('fill', 'gray')
+	.style('stroke', 'white')
+	.style('stroke-width', 1);
+});
 
 </script>
 </body>
