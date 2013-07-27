@@ -31,20 +31,19 @@ d3.json("/json/countriestopo.json", function(error, world) {
         .data(topojson.feature(world, world.objects.countries).features)
       .enter().append("path")
       .attr("d", path);
-});
-
-d3.json("/json/helpagetopo.json", function(error, world) {
-  svg.append("g")
-        .attr("class", "index")
-      .selectAll("path")
-        .data(topojson.feature(world, world.objects.helpageindex).features)
-      .enter().append("path")
-        .attr("class", function(d) {
-          var index = d["properties"]["Overall Index"];
-          var remapped = Math.floor(index/10);
-          return "q" + remapped + "-9";
-        })
-        .attr("d", path);
+  d3.json("/json/helpagetopo.json", function(error, world) {
+    svg.append("g")
+          .attr("class", "index")
+        .selectAll("path")
+          .data(topojson.feature(world, world.objects.helpageindex).features)
+        .enter().append("path")
+          .attr("class", function(d) {
+            var index = d["properties"]["Overall Index"];
+            var remapped = Math.floor(index/10);
+            return "q" + remapped + "-9";
+          })
+          .attr("d", path);
+  });
 });
 
 d3.select(self.frameElement).style("height", height + "px");
