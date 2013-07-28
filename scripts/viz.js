@@ -61,7 +61,7 @@ function drawMap(world){
 
 function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   var indexScale = d3.scale.linear()
-      .domain([20, 100])
+      .domain([0, 100])
       .range([0, 10])
       .clamp(true);
   $(".country").each(function(index) {
