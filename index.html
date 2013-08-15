@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-	<title>DataDive - HelpAge - 27/07/13</title>
+	<title>DataDive - HelpAge - D3 Map</title>
  	<link rel='stylesheet' type='text/css' href='css/style.css' />
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 </head>
 
 <body>
-
-  <div id="coverPage">
-    <div id="mainLogo"><img src="/images/helpage-logo1.png" alt="Logo"></div>
-    <p id="mainTitle">Global AgeWatch Index</p>
-    <p id="subTitle">2013</p>
-    <div id="scrollLogo"><img src="/images/scrollDown.png" alt="Scroll Down!"></div>
-  </div>
-
-  <div id="introPage">
-    <p id="introText1">Some insightful introductory text to tell us about the project</p>
-    <p id="introText2">Tell the visitor we're about to show them a map</p>
-  </div>
-  
+ 
   <div id="map"></div>
 
-  <span class="slider-title">Income</span>
-  <span class="slider-title">Health</span>
-  <span class="slider-title">Employment/Education</span>
-  <span class="slider-title">Environment</span>
+  <span class="slider-title">Income: <label id=incomeVal>25</label>% weighting</span>
+  <span class="slider-title">Health: <label id=healthVal>25</label>% weighting</span>
+  <span class="slider-title">Employment: <label id=employmentVal>25</label>% weighting</span>
+  <span class="slider-title">Environment: <label id=environmentVal>25</label>% weighting</span>
   
   <div class="slider income"></div>
   <div class="slider health"></div>
@@ -38,37 +26,5 @@
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="scripts/viz.js"></script>
-  
-  <div id="analytics2">
-    <p style="color:#000000; text-align:left">We've plotted the full dataset on Tableau. You can explore it below using the interactive panel.</p><br>
-    <script type="text/javascript" src="http://public.tableausoftware.com/javascripts/api/viz_v1.js"></script>
-    <div class="tableauPlaceholder" style="width:1004px; height:895px;">
-      <noscript>
-        <a href="#"><img alt=" " src="http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;HA&#47;HA&#47;Heatmaps&#47;1_rss.png" style="border: none" /></a>
-      </noscript>
-      <object class="tableauViz" width="1004" height="895" style="display:none;"><param name="host_url" value="http%3A%2F%2Fpublic.tableausoftware.com%2F" />
-        <param name="site_root" value="" />
-        <param name="name" value="HA&#47;Heatmaps" />
-        <param name="tabs" value="yes" />
-        <param name="toolbar" value="yes" />
-        <param name="static_image" value="http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;HA&#47;HA&#47;Heatmaps&#47;1.png" />
-        <param name="animate_transition" value="yes" />
-        <param name="display_static_image" value="yes" />
-        <param name="display_spinner" value="yes" />
-        <param name="display_overlay" value="yes" />
-        <param name="display_count" value="yes" />
-      </object> 
-    </div>
-  </div>
-  
-  <div id="closeOut">
-    <div style="position:relative; left: 60%; top: 35%; width:35%;">
-      <div style="float: left; width: 50%;">
-        <a href="http://datakind.org.uk/">DataKind UK</a>
-      </div>
-      <div style="float: left; width: 50%;">
-        <a href="http://www.helpage.org/">HelpAge International</a>
-      </div>
-    </div>
-  </div>
+
 </body>
