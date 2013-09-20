@@ -68,7 +68,7 @@ function drawMap(world){
 
 function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   var indexScale = d3.scale.linear()
-      .domain([0, 100])
+      .domain([20, 100])
       .range([0, 10])
       .clamp(true);
   $(".country").each(function(index) {
@@ -76,7 +76,11 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var health = $(this).attr("data-health");
     var employment = $(this).attr("data-employment");
     var environment = $(this).attr("data-environment");
+<<<<<<< HEAD
     var index = (Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight));
+=======
+    var index = (income*inWeight + health*heWeight + employment*emWeight + environment*enWeight);
+>>>>>>> f8354046e47448045271eace44e0dd7a7bed7a8f
     var remapped = Math.floor(indexScale(index));
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
