@@ -23,7 +23,6 @@ var tooltip = d3.select("body")
   .text(".");
 
 var svg = d3.select("#map").append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 "+width+" "+height);
 
 
