@@ -6,9 +6,9 @@ var healthWeight = 0.25;
 var employmentWeight = 0.25;
 var environmentWeight = 0.25;
 
-var projection = d3.geo.equirectangular()
-    .scale((width) / 1.7 / Math.PI)
-    .translate([width / 2, height / 2])
+var projection = d3.geo.mercator()
+    .scale((width + 1) / 2 / Math.PI)
+    .translate([width / 2, (height / 2)+(height/10)])
     .precision(.1);
 
 var path = d3.geo.path()
@@ -44,7 +44,7 @@ function drawMap(world){
   svg.append("g")
         .attr("class", "index")
       .selectAll("path")
-        .data(topojson.feature(world, world.objects.helpageindex).features)
+        .data(topojson.feature(world, world.objects.HelpAgeIndex).features)
       .enter().append("path")
         .attr("class", "country")
         .attr("data-income", function(d) { return d["properties"]["Income Security Sub-Index"]; })
