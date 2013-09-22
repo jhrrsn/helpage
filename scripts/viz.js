@@ -1,6 +1,9 @@
 var width = $('#map').width(),
     height = width/1.6;
 
+console.log(width);
+console.log(height);
+
 var incomeWeight = 0.25;
 var healthWeight = 0.25;
 var employmentWeight = 0.25;
@@ -8,7 +11,7 @@ var environmentWeight = 0.25;
 
 var projection = d3.geo.mercator()
     .scale((width + 1) / 2 / Math.PI)
-    .translate([width / 2, (height / 2)+(height/10)])
+    .translate([width / 2, (height / 2) + (height/8)])
     .precision(.1);
 
 var path = d3.geo.path()
@@ -23,8 +26,8 @@ var tooltip = d3.select("body")
   .text(".");
 
 var svg = d3.select("#map").append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 "+width+" "+height);
+  .attr("width", width)
+  .attr("height", height);
 
 
 d3.json("/json/countries.json", function(error, world) {
@@ -60,7 +63,7 @@ function drawMap(world){
         .attr("d", path)
         .on("mouseover", function(d){ 
           tooltip.style("visibility", "visible");
-          $("#tooltip").text("Calculated Global Rating: "+String(Math.round(100*$(this).attr('data-index-score'))/100));
+          $("#tooltip").text("Calculated Global Rating: "+String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(2)));
         })
         .on("mousemove", function(){ return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
