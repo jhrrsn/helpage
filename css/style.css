@@ -1,7 +1,10 @@
 #map {
   width: $(window).width();
   margin:0 auto;
+}
 
+svg {
+  background-color: #acc6d9;
 }
 
 .countries {
