@@ -1,9 +1,6 @@
 var width = $('#map').width(),
     height = width/1.6;
 
-console.log(width);
-console.log(height);
-
 var incomeWeight = 0.25;
 var healthWeight = 0.25;
 var employmentWeight = 0.25;
