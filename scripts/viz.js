@@ -44,7 +44,7 @@ function drawMap(world){
   svg.append("g")
         .attr("class", "index")
       .selectAll("path")
-        .data(topojson.feature(world, world.objects.HelpAgeIndex).features)
+        .data(topojson.feature(world, world.objects.helpageindex).features)
       .enter().append("path")
         .attr("class", "country")
         .attr("data-income", function(d) { return d["properties"]["Income Security Sub-Index"]; })
