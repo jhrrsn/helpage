@@ -2,7 +2,7 @@
   width: $(window).width();
   margin:0 auto;
   background:#acc6d9 url('../images/legend.png') no-repeat center 98%;
-  background-size:15%;
+  background-size:20%;
 }
 
 .countries {
