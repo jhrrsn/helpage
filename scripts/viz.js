@@ -85,6 +85,28 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   });
 }
 
+function adjustSlider (main) {
+  var sliders = {
+    incomeWeight : 1, 
+    healthWeight : 1, 
+    employmentWeight : 1, 
+    environmentWeight : 1
+  }
+  
+  var mainPosn = sliders.indexof(main);
+
+  var currentValue = incomeWeight;
+  var newValue = $(this).slider('value')/100;
+  incomeWeight = newValue;
+  change = currentValue - newValue;
+  healthWeight += change/3;
+  employmentWeight += change/3;
+  environmentWeight += change/3;
+  $('.environment').slider('value', Math.ceil(environmentWeight*100));
+  $('.health').slider('value', Math.ceil(healthWeight*100));
+  $('.employment').slider('value', Math.ceil(employmentWeight*100));
+  styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
+}
 
 $(function() {
   $( ".income" ).slider({
@@ -101,9 +123,25 @@ $(function() {
         healthWeight += change/3;
         employmentWeight += change/3;
         environmentWeight += change/3;
-        $('.environment').slider('value', Math.ceil(environmentWeight*100));
-        $('.health').slider('value', Math.ceil(healthWeight*100));
-        $('.employment').slider('value', Math.ceil(employmentWeight*100));
+        
+        var healthSlider = Math.ceil(healthWeight*100);
+        var employmentSlider = Math.ceil(employmentWeight*100);
+        var environmentSlider = Math.ceil(environmentWeight*100);
+        var sliderSum = $(this).slider('value') + healthSlider + employmentSlider + environmentSlider;
+        
+        if (sliderSum > 100) {
+          healthSlider -= sliderSum-100;
+          healthWeight = healthSlider/100;
+        } 
+        else if (sliderSum < 100) {
+          healthSlider += 100-sliderSum;
+          healthWeight = healthSlider/100;
+        }
+
+        $('.health').slider('value', healthSlider);
+        $('.employment').slider('value', employmentSlider);
+        $('.environment').slider('value', environmentSlider);
+
         styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
       }
     }
@@ -122,9 +160,25 @@ $(function() {
         incomeWeight += change/3;
         employmentWeight += change/3;
         environmentWeight += change/3;
-        $('.environment').slider('value', Math.ceil(environmentWeight*100));
-        $('.income').slider('value', Math.ceil(incomeWeight*100));
-        $('.employment').slider('value', Math.ceil(employmentWeight*100));
+        
+        var incomeSlider = Math.ceil(incomeWeight*100);
+        var employmentSlider = Math.ceil(employmentWeight*100);
+        var environmentSlider = Math.ceil(environmentWeight*100);
+        var sliderSum = $(this).slider('value') + incomeSlider + employmentSlider + environmentSlider;
+        
+        if (sliderSum > 100) {
+          employmentSlider -= sliderSum-100;
+          employmentWeight = employmentSlider/100;
+        } 
+        else if (sliderSum < 100) {
+          employmentSlider += 100-sliderSum;
+          employmentWeight = employmentSlider/100;
+        }
+
+        $('.income').slider('value', incomeSlider);
+        $('.employment').slider('value', employmentSlider);
+        $('.environment').slider('value', environmentSlider);
+
         styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
       }
     }
@@ -143,9 +197,25 @@ $(function() {
         healthWeight += change/3;
         incomeWeight += change/3;
         environmentWeight += change/3;
-        $('.environment').slider('value', Math.ceil(environmentWeight*100));
-        $('.health').slider('value', Math.ceil(healthWeight*100));
-        $('.income').slider('value', Math.ceil(incomeWeight*100));
+
+        var incomeSlider = Math.ceil(incomeWeight*100);
+        var healthSlider = Math.ceil(healthWeight*100);
+        var environmentSlider = Math.ceil(environmentWeight*100);
+        var sliderSum = $(this).slider('value') + healthSlider + incomeSlider + environmentSlider;
+        
+        if (sliderSum > 100) {
+          environmentSlider -= sliderSum-100;
+          environmentWeight = environmentSlider/100;
+        } 
+        else if (sliderSum < 100) {
+          environmentSlider += 100-sliderSum;
+          environmentWeight = environmentSlider/100;
+        }
+
+        $('.income').slider('value', incomeSlider);
+        $('.health').slider('value', healthSlider);
+        $('.environment').slider('value', environmentSlider);
+
         styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
       }
     }
@@ -164,9 +234,25 @@ $(function() {
         healthWeight += change/3;
         employmentWeight += change/3;
         incomeWeight += change/3;
-        $('.income').slider('value', Math.ceil(incomeWeight*100));
-        $('.health').slider('value', Math.ceil(healthWeight*100));
-        $('.employment').slider('value', Math.ceil(employmentWeight*100));
+
+        var incomeSlider = Math.ceil(incomeWeight*100);
+        var healthSlider = Math.ceil(healthWeight*100);
+        var employmentSlider = Math.ceil(employmentWeight*100);
+        var sliderSum = $(this).slider('value') + incomeSlider + healthSlider + employmentSlider;
+        
+        if (sliderSum > 100) {
+          incomeSlider -= sliderSum-100;
+          incomeWeight = incomeSlider/100;
+        } 
+        else if (sliderSum < 100) {
+          incomeSlider += 100-sliderSum;
+          incomeWeight = incomeSlider/100;
+        }
+
+        $('.income').slider('value', incomeSlider);
+        $('.health').slider('value', healthSlider);
+        $('.employment').slider('value', employmentSlider);
+
         styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
       }
     }
