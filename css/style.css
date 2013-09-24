@@ -66,6 +66,10 @@ body {
   color: rgb(234, 65, 44);
 }
 
+#tooltip-value {
+  font-weight: bold;
+}
+
 .slider, .slider-title {
 	display: inline-block;
 	width: 20%;
