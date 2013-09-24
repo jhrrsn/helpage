@@ -44,6 +44,25 @@ body {
   font-size:14px;
 }
 
+#incomeVal {
+  font-weight: bold;
+  color: rgb(239, 170, 57);
+}
+
+#healthVal {
+  font-weight: bold;
+  color: rgb(160, 41, 26);
+}
+
+#employmentVal {
+  font-weight: bold;
+  color: rgb(122, 195, 48);
+}
+
+#environmentVal {
+  font-weight: bold;
+  color: rgb(234, 65, 44);
+}
 
 .slider, .slider-title {
 	display: inline-block;
