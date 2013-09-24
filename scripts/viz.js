@@ -65,7 +65,7 @@ function drawMap(world){
 function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   var indexScale = d3.scale.linear()
       .domain([20, 100])
-      .range([0, 10])
+      .range([0, 9])
       .clamp(true);
   $(".country").each(function(index) {
     var income = $(this).attr("data-income");
@@ -93,15 +93,31 @@ $(function() {
         var newValue = $(this).slider('value')/100;
         incomeWeight = newValue;
         change = currentValue - newValue;
-        healthWeight += change/3;
-        employmentWeight += change/3;
-        environmentWeight += change/3;
-        
-        var healthSlider = Math.ceil(healthWeight*100);
-        var employmentSlider = Math.ceil(employmentWeight*100);
-        var environmentSlider = Math.ceil(environmentWeight*100);
+
+        var healthChange, employmentChange, environmentChange;
+        var otherSlidersSum = healthWeight + employmentWeight + environmentWeight;
+
+        // Calculate size proportion amongst the three other values:
+        if (otherSlidersSum > 1) {
+          healthChange = healthWeight / otherSlidersSum;
+          employmentChange = employmentWeight / otherSlidersSum;
+          environmentChange = environmentWeight / otherSlidersSum;
+        } else {
+          healthChange = 0.33;
+          employmentChange = 0.33;
+          environmentChange = 0.33;
+        }
+
+        // Adjust the other values based on their proportion:
+        healthWeight += change * healthChange;
+        employmentWeight += change * employmentChange;
+        environmentWeight += change * environmentChange;
+
+        var healthSlider = Math.floor(healthWeight*100);
+        var employmentSlider = Math.floor(employmentWeight*100);
+        var environmentSlider = Math.floor(environmentWeight*100);
         var sliderSum = $(this).slider('value') + healthSlider + employmentSlider + environmentSlider;
-        
+
         if (sliderSum > 100) {
           healthSlider -= sliderSum-100;
           healthWeight = healthSlider/100;
@@ -131,13 +147,27 @@ $(function() {
         var newValue = $(this).slider('value')/100;
         healthWeight = newValue;
         change = currentValue - newValue;
-        incomeWeight += change/3;
-        employmentWeight += change/3;
-        environmentWeight += change/3;
-        
-        var incomeSlider = Math.ceil(incomeWeight*100);
-        var employmentSlider = Math.ceil(employmentWeight*100);
-        var environmentSlider = Math.ceil(environmentWeight*100);
+
+        var incomeChange, employmentChange, environmentChange;
+        var otherSlidersSum = incomeWeight + employmentWeight + environmentWeight;
+
+        if (otherSlidersSum > 1) {
+          incomeChange = incomeWeight / otherSlidersSum;
+          employmentChange = employmentWeight / otherSlidersSum;
+          environmentChange = environmentWeight / otherSlidersSum;
+        } else {
+          incomeChange = 0.33;
+          employmentChange = 0.33;
+          environmentChange = 0.33;
+        }
+
+        incomeWeight += change * incomeChange;
+        employmentWeight += change * employmentChange;
+        environmentWeight += change * environmentChange;
+
+        var incomeSlider = Math.floor(incomeWeight*100);
+        var employmentSlider = Math.floor(employmentWeight*100);
+        var environmentSlider = Math.floor(environmentWeight*100);
         var sliderSum = $(this).slider('value') + incomeSlider + employmentSlider + environmentSlider;
         
         if (sliderSum > 100) {
@@ -169,13 +199,27 @@ $(function() {
         var newValue = $(this).slider('value')/100;
         employmentWeight = newValue;
         change = currentValue - newValue;
-        healthWeight += change/3;
-        incomeWeight += change/3;
-        environmentWeight += change/3;
 
-        var incomeSlider = Math.ceil(incomeWeight*100);
-        var healthSlider = Math.ceil(healthWeight*100);
-        var environmentSlider = Math.ceil(environmentWeight*100);
+        var incomeChange, healthChange, environmentChange;
+        var otherSlidersSum = incomeWeight + healthWeight + environmentWeight;
+
+        if (otherSlidersSum > 1) {
+          incomeChange = incomeWeight / otherSlidersSum;
+          healthChange = healthWeight / otherSlidersSum;
+          environmentChange = environmentWeight / otherSlidersSum;
+        } else {
+          incomeChange = 0.33;
+          healthChange = 0.33;
+          environmentChange = 0.33;
+        }
+
+        incomeWeight += change * incomeChange;
+        healthWeight += change * healthChange;
+        environmentWeight += change * environmentChange;
+
+        var incomeSlider = Math.floor(incomeWeight*100);
+        var healthSlider = Math.floor(healthWeight*100);
+        var environmentSlider = Math.floor(environmentWeight*100);
         var sliderSum = $(this).slider('value') + healthSlider + incomeSlider + environmentSlider;
         
         if (sliderSum > 100) {
@@ -207,13 +251,27 @@ $(function() {
         var newValue = $(this).slider('value')/100;
         environmentWeight = newValue;
         change = currentValue - newValue;
-        healthWeight += change/3;
-        employmentWeight += change/3;
-        incomeWeight += change/3;
+        
+        var incomeChange, healthChange, employmentChange;
+        var otherSlidersSum = incomeWeight + healthWeight + employmentWeight;
 
-        var incomeSlider = Math.ceil(incomeWeight*100);
-        var healthSlider = Math.ceil(healthWeight*100);
-        var employmentSlider = Math.ceil(employmentWeight*100);
+        if (otherSlidersSum > 1) {
+          incomeChange = incomeWeight / otherSlidersSum;
+          healthChange = healthWeight / otherSlidersSum;
+          employmentChange = employmentWeight / otherSlidersSum;
+        } else {
+          incomeChange = 0.33;
+          healthChange = 0.33;
+          employmentChange = 0.33;
+        }
+
+        incomeWeight += change * incomeChange;
+        healthWeight += change * healthChange;
+        employmentWeight += change * employmentChangel;
+
+        var incomeSlider = Math.floor(incomeWeight*100);
+        var healthSlider = Math.floor(healthWeight*100);
+        var employmentSlider = Math.floor(employmentWeight*100);
         var sliderSum = $(this).slider('value') + incomeSlider + healthSlider + employmentSlider;
         
         if (sliderSum > 100) {
