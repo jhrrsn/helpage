@@ -267,7 +267,7 @@ $(function() {
 
         incomeWeight += change * incomeChange;
         healthWeight += change * healthChange;
-        employmentWeight += change * employmentChangel;
+        employmentWeight += change * employmentChange;
 
         var incomeSlider = Math.floor(incomeWeight*100);
         var healthSlider = Math.floor(healthWeight*100);
