@@ -1,11 +1,13 @@
 #map {
   width: $(window).width();
   margin:0 auto;
+  background:#acc6d9 url('../images/legend.png') no-repeat center 98%;
+  background-size:15%;
 }
 
-svg {
-  background-color: #acc6d9;
-}
+/*svg {
+  background:#acc6d9 url('images/legend.png') no-repeat center bottom;
+}*/
 
 .countries {
   fill: #EEE;
@@ -27,6 +29,7 @@ body, html {
     width: 100%;
     padding:0;
     margin:0;
+    font-family: 'Verdana', sans-serif;
 }
 
 body {
