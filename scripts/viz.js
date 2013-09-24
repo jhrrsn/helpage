@@ -14,13 +14,7 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
     .projection(projection);
 
-var tooltip = d3.select("body")
-  .append("div")
-  .attr('id', 'tooltip')
-  .style("position", "absolute")
-  .style("z-index", "10")
-  .style("visibility", "hidden")
-  .text(".");
+var tooltip = d3.select("#tooltip");
 
 var svg = d3.select("#map").append("svg")
   .attr("width", width)
@@ -47,7 +41,7 @@ function drawMap(world){
         .data(topojson.feature(world, world.objects.helpageindex).features)
       .enter().append("path")
         .attr("class", "country")
-        .attr("data-country", function(d) { return d["properties"]["Country"]; })
+        .attr("data-country", function(d) { return d["properties"]["C"]; })
         .attr("data-income", function(d) { return d["properties"]["Income Security Sub-Index"]; })
         .attr("data-health", function(d) { return d["properties"]["Health Status Sub-Index"]; })
         .attr("data-employment", function(d) { return d["properties"]["Employment and Education Sub-Index"]; })
