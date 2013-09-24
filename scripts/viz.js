@@ -60,7 +60,7 @@ function drawMap(world){
         .attr("d", path)
         .on("mouseover", function(d){ 
           tooltip.style("visibility", "visible");
-          $("#tooltip").text("Calculated Global Rating: "+String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(2)));
+          $("#tooltip").text("Global AgeWatch Value: "+String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(2)));
         })
         .on("mousemove", function(){ return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
@@ -146,6 +146,7 @@ $(function() {
       }
     }
   });
+
   $( ".health" ).slider({
     value: 25,
     min: 0,
@@ -183,6 +184,7 @@ $(function() {
       }
     }
   });
+
   $( ".employment" ).slider({
     value: 25,
     min: 0,
@@ -220,6 +222,7 @@ $(function() {
       }
     }
   });
+
   $( ".environment" ).slider({
     value: 25,
     min: 0,
