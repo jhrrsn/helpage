@@ -98,7 +98,7 @@ $(function() {
         var otherSlidersSum = healthWeight + employmentWeight + environmentWeight;
 
         // Calculate size proportion amongst the three other values:
-        if (otherSlidersSum > 1) {
+        if (otherSlidersSum > 0.1) {
           healthChange = healthWeight / otherSlidersSum;
           employmentChange = employmentWeight / otherSlidersSum;
           environmentChange = environmentWeight / otherSlidersSum;
@@ -151,7 +151,7 @@ $(function() {
         var incomeChange, employmentChange, environmentChange;
         var otherSlidersSum = incomeWeight + employmentWeight + environmentWeight;
 
-        if (otherSlidersSum > 1) {
+        if (otherSlidersSum > 0.1) {
           incomeChange = incomeWeight / otherSlidersSum;
           employmentChange = employmentWeight / otherSlidersSum;
           environmentChange = environmentWeight / otherSlidersSum;
@@ -203,7 +203,7 @@ $(function() {
         var incomeChange, healthChange, environmentChange;
         var otherSlidersSum = incomeWeight + healthWeight + environmentWeight;
 
-        if (otherSlidersSum > 1) {
+        if (otherSlidersSum > 0.1) {
           incomeChange = incomeWeight / otherSlidersSum;
           healthChange = healthWeight / otherSlidersSum;
           environmentChange = environmentWeight / otherSlidersSum;
@@ -255,7 +255,7 @@ $(function() {
         var incomeChange, healthChange, employmentChange;
         var otherSlidersSum = incomeWeight + healthWeight + employmentWeight;
 
-        if (otherSlidersSum > 1) {
+        if (otherSlidersSum > 0.1) {
           incomeChange = incomeWeight / otherSlidersSum;
           healthChange = healthWeight / otherSlidersSum;
           employmentChange = employmentWeight / otherSlidersSum;
