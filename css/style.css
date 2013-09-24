@@ -5,10 +5,6 @@
   background-size:15%;
 }
 
-/*svg {
-  background:#acc6d9 url('images/legend.png') no-repeat center bottom;
-}*/
-
 .countries {
   fill: #EEE;
 }
@@ -70,5 +66,5 @@ body {
 	margin: 0.5% 2%;
 	text-align: center;
   font-family: 'Verdana', sans-serif;
-  font-size:14px;
+  font-size:13px;
 }
