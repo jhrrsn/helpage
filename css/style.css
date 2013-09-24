@@ -66,6 +66,12 @@ body {
   color: rgb(234, 65, 44);
 }
 
+#tooltip-country {
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 #tooltip-value {
   font-weight: bold;
 }

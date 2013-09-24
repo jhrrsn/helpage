@@ -41,7 +41,7 @@ function drawMap(world){
         .data(topojson.feature(world, world.objects.helpageindex).features)
       .enter().append("path")
         .attr("class", "country")
-        .attr("data-country", function(d) { return d["properties"]["C"]; })
+        .attr("data-country", function(d) { return d["properties"]["Country"]; })
         .attr("data-income", function(d) { return d["properties"]["Income Security Sub-Index"]; })
         .attr("data-health", function(d) { return d["properties"]["Health Status Sub-Index"]; })
         .attr("data-employment", function(d) { return d["properties"]["Employment and Education Sub-Index"]; })
@@ -56,6 +56,7 @@ function drawMap(world){
         .on("mouseover", function(d){ 
           tooltip.style("visibility", "visible");
           $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
+          $("#tooltip-country").text($(this).attr('data-country'));
         })
         .on("mousemove", function(){ return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
