@@ -81,29 +81,6 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   });
 }
 
-function adjustSlider (main) {
-  var sliders = {
-    incomeWeight : 1, 
-    healthWeight : 1, 
-    employmentWeight : 1, 
-    environmentWeight : 1
-  }
-  
-  var mainPosn = sliders.indexof(main);
-
-  var currentValue = incomeWeight;
-  var newValue = $(this).slider('value')/100;
-  incomeWeight = newValue;
-  change = currentValue - newValue;
-  healthWeight += change/3;
-  employmentWeight += change/3;
-  environmentWeight += change/3;
-  $('.environment').slider('value', Math.ceil(environmentWeight*100));
-  $('.health').slider('value', Math.ceil(healthWeight*100));
-  $('.employment').slider('value', Math.ceil(employmentWeight*100));
-  styleCountries(incomeWeight, healthWeight, employmentWeight, environmentWeight);
-}
-
 $(function() {
   $( ".income" ).slider({
     value: 25,
