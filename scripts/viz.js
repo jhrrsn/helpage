@@ -47,6 +47,7 @@ function drawMap(world){
         .data(topojson.feature(world, world.objects.helpageindex).features)
       .enter().append("path")
         .attr("class", "country")
+        .attr("data-country", function(d) { return d["properties"]["Country"]; })
         .attr("data-income", function(d) { return d["properties"]["Income Security Sub-Index"]; })
         .attr("data-health", function(d) { return d["properties"]["Health Status Sub-Index"]; })
         .attr("data-employment", function(d) { return d["properties"]["Employment and Education Sub-Index"]; })
