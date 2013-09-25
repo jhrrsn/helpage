@@ -72,13 +72,23 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var health = $(this).attr("data-health");
     var employment = $(this).attr("data-employment");
     var environment = $(this).attr("data-environment");
-    var index = (Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight));
+    var index = Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight);
     var remapped = Math.floor(indexScale(index));
+    if ($(this).attr("data-country") === 'Brazil') {
+      console.log("Income: " + income + ", Health: " + health + ", Employment: " + employment + ", Environment: " + environment);
+      console.log("Income weight: " + inWeight + ", Health weight: " + heWeight + ", Employment weight: " + emWeight + ", Environment weight: " + enWeight);
+      console.log("Index: " + index);
+      console.log("Remapped: " + remapped);
+    }
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
     
   });
+}
+
+function to2dp(decimal) {
+  return Math.round(decimal*100)/100;
 }
 
 $(function() {
@@ -112,6 +122,12 @@ $(function() {
         healthWeight += change * healthChange;
         employmentWeight += change * employmentChange;
         environmentWeight += change * environmentChange;
+
+        // Round the weights to 2 d.p.
+        incomeWeight = to2dp(incomeWeight);
+        healthWeight = to2dp(healthWeight);
+        employmentWeight = to2dp(employmentWeight);
+        environmentWeight = to2dp(environmentWeight);
 
         var healthSlider = Math.floor(healthWeight*100);
         var employmentSlider = Math.floor(employmentWeight*100);
@@ -165,6 +181,11 @@ $(function() {
         employmentWeight += change * employmentChange;
         environmentWeight += change * environmentChange;
 
+        incomeWeight = to2dp(incomeWeight);
+        healthWeight = to2dp(healthWeight);
+        employmentWeight = to2dp(employmentWeight);
+        environmentWeight = to2dp(environmentWeight);
+
         var incomeSlider = Math.floor(incomeWeight*100);
         var employmentSlider = Math.floor(employmentWeight*100);
         var environmentSlider = Math.floor(environmentWeight*100);
@@ -217,6 +238,11 @@ $(function() {
         healthWeight += change * healthChange;
         environmentWeight += change * environmentChange;
 
+        incomeWeight = to2dp(incomeWeight);
+        healthWeight = to2dp(healthWeight);
+        employmentWeight = to2dp(employmentWeight);
+        environmentWeight = to2dp(environmentWeight);
+
         var incomeSlider = Math.floor(incomeWeight*100);
         var healthSlider = Math.floor(healthWeight*100);
         var environmentSlider = Math.floor(environmentWeight*100);
@@ -268,6 +294,11 @@ $(function() {
         incomeWeight += change * incomeChange;
         healthWeight += change * healthChange;
         employmentWeight += change * employmentChange;
+
+        incomeWeight = to2dp(incomeWeight);
+        healthWeight = to2dp(healthWeight);
+        employmentWeight = to2dp(employmentWeight);
+        environmentWeight = to2dp(environmentWeight);
 
         var incomeSlider = Math.floor(incomeWeight*100);
         var healthSlider = Math.floor(healthWeight*100);
