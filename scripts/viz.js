@@ -74,12 +74,6 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var environment = $(this).attr("data-environment");
     var index = Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight);
     var remapped = Math.floor(indexScale(index));
-    if ($(this).attr("data-country") === 'Brazil') {
-      console.log("Income: " + income + ", Health: " + health + ", Employment: " + employment + ", Environment: " + environment);
-      console.log("Income weight: " + inWeight + ", Health weight: " + heWeight + ", Employment weight: " + emWeight + ", Environment weight: " + enWeight);
-      console.log("Index: " + index);
-      console.log("Remapped: " + remapped);
-    }
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
