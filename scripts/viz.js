@@ -54,6 +54,7 @@ function drawMap(world){
             return (incomeScore+healthScore+employmentScore+environmentScore)/4; })
         .attr("d", path)
         .on("mouseover", function(d){
+          var rank = getRank($(this).attr('data-index-score'));
           tooltip.style("visibility", "visible");
           $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
           $("#tooltip-country").text($(this).attr('data-country'));
