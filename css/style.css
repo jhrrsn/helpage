@@ -56,6 +56,10 @@ body {
   font-weight: bold;
 }
 
+#tooltip-rank {
+  font-weight: bold;
+}
+
 #incomeVal {
   font-weight: bold;
   color: rgb(239, 170, 57);
