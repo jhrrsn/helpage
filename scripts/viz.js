@@ -53,7 +53,7 @@ function drawMap(world){
             var environmentScore = d["properties"]["Age-Friendly Environment Sub-Index"];
             return (incomeScore+healthScore+employmentScore+environmentScore)/4; })
         .attr("d", path)
-        .on("mouseover", function(d){ 
+        .on("mouseover", function(d){
           tooltip.style("visibility", "visible");
           $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
           $("#tooltip-country").text($(this).attr('data-country'));
@@ -77,12 +77,20 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
-    
   });
 }
 
 function to2dp(decimal) {
   return Math.round(decimal*100)/100;
+}
+
+function getRank(value) {
+  var indexValues = [];
+  $(".country").each(function(index) {
+    var calculatedIndex = $(this).attr('data-index-score');
+    indexValues.push(calculatedIndex);  
+  });
+  indexValues.sort().reverse();
 }
 
 $(function() {
