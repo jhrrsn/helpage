@@ -97,10 +97,10 @@ function getRank(value) {
   var indexValues = [];
   $(".country").each(function(index) {
     var calculatedIndex = $(this).attr('data-index-score');
-    indexValues.push(calculatedIndex);  
+    indexValues.push(parseFloat(calculatedIndex));  
   });
-  indexValues.sort().reverse();
-  return indexValues.indexOf(value)+1;
+  indexValues.sort(function(a,b){return b-a});
+  return indexValues.indexOf(parseFloat(value))+1;
 }
 
 $(function() {
