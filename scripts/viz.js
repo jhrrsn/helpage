@@ -66,8 +66,7 @@ function drawMap(world){
 
 
 $( document ).on( "mousemove", function( event ) {
-  console.log(event.pageX);
-  console.log(event.pageY);
+  event = event || window.event;
   if (event.pageX > width/2) {
     return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX-250)+"px");
   }
