@@ -60,16 +60,21 @@ function drawMap(world){
           $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
           $("#tooltip-country").text($(this).attr('data-country'));
         })
-        .on("mousemove", function() {
-          if (event.pageX > width/2) {
-            return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX-250)+"px");
-          }
-          else {
-            return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");
-          }
-        })
+
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 }
+
+
+$( document ).on( "mousemove", function( event ) {
+  console.log(event.pageX);
+  console.log(event.pageY);
+  if (event.pageX > width/2) {
+    return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX-250)+"px");
+  }
+  else {
+    return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");
+  }
+});
 
 function styleCountries(inWeight, heWeight, emWeight, enWeight) {
   var indexScale = d3.scale.linear()
