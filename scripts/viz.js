@@ -53,12 +53,21 @@ function drawMap(world){
             var environmentScore = d["properties"]["Age-Friendly Environment Sub-Index"];
             return (incomeScore+healthScore+employmentScore+environmentScore)/4; })
         .attr("d", path)
-        .on("mouseover", function(d){ 
+        .on("mouseover", function(d){
+          var rank = getRank($(this).attr('data-index-score'));
           tooltip.style("visibility", "visible");
+          $("#tooltip-rank").text(String(rank));
           $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
           $("#tooltip-country").text($(this).attr('data-country'));
         })
-        .on("mousemove", function(){ return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+        .on("mousemove", function() {
+          if (event.pageX > width/2) {
+            return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX-250)+"px");
+          }
+          else {
+            return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");
+          }
+        })
         .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 }
 
@@ -77,12 +86,21 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
-    
   });
 }
 
 function to2dp(decimal) {
   return Math.round(decimal*100)/100;
+}
+
+function getRank(value) {
+  var indexValues = [];
+  $(".country").each(function(index) {
+    var calculatedIndex = $(this).attr('data-index-score');
+    indexValues.push(parseFloat(calculatedIndex));  
+  });
+  indexValues.sort(function(a,b){return b-a});
+  return indexValues.indexOf(parseFloat(value))+1;
 }
 
 $(function() {
