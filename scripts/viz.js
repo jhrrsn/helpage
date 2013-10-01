@@ -34,6 +34,14 @@ d3.json("/json/countries.json", function(error, world) {
   });
 });
 
+function to2dp(decimal) {
+  return Math.round(decimal*100)/100;
+}
+
+function to1dp(decimal) {
+  return Math.round(decimal*10)/10;
+}
+
 function drawMap(world){
   svg.append("g")
         .attr("class", "index")
@@ -47,17 +55,17 @@ function drawMap(world){
         .attr("data-employment", function(d) { return d["properties"]["Employment and Education Sub-Index"]; })
         .attr("data-environment", function(d) { return d["properties"]["Age-Friendly Environment Sub-Index"]; })
         .attr("data-index-score", function(d) {
-            var incomeScore = d["properties"]["Income Security Sub-Index"];
-            var healthScore = d["properties"]["Health Status Sub-Index"];
-            var employmentScore = d["properties"]["Employment and Education Sub-Index"];
-            var environmentScore = d["properties"]["Age-Friendly Environment Sub-Index"];
-            return (incomeScore+healthScore+employmentScore+environmentScore)/4; })
+            var income = d["properties"]["Income Security Sub-Index"];
+            var health = d["properties"]["Health Status Sub-Index"];
+            var employment = d["properties"]["Employment and Education Sub-Index"];
+            var environment = d["properties"]["Age-Friendly Environment Sub-Index"];
+            return (to2dp(Math.pow(income,incomeWeight) * Math.pow(health,healthWeight) * Math.pow(employment,employmentWeight) * Math.pow(environment,environmentWeight)))})
         .attr("d", path)
         .on("mouseover", function(d){
           var rank = getRank($(this).attr('data-index-score'));
           tooltip.style("visibility", "visible");
           $("#tooltip-rank").text(String(rank));
-          $("#tooltip-value").text(String((Math.round(100*$(this).attr('data-index-score'))/100).toFixed(1)));
+          $("#tooltip-value").text(String((to1dp($(this).attr('data-index-score'))).toFixed(1)));
           $("#tooltip-country").text($(this).attr('data-country'));
         })
 
@@ -85,16 +93,12 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var health = $(this).attr("data-health");
     var employment = $(this).attr("data-employment");
     var environment = $(this).attr("data-environment");
-    var index = Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight);
+    var index = to2dp(Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight));
     var remapped = Math.floor(indexScale(index));
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
   });
-}
-
-function to2dp(decimal) {
-  return Math.round(decimal*100)/100;
 }
 
 function getRank(value) {
