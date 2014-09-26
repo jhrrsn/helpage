@@ -39,6 +39,7 @@ function to2dp(decimal) {
 }
 
 function to1dp(decimal) {
+console.log(decimal)
   return Math.round(decimal*10)/10;
 }
 
@@ -59,6 +60,12 @@ function drawMap(world){
             var health = d["properties"]["Health Status Sub-Index"];
             var employment = d["properties"]["Employment and Education Sub-Index"];
             var environment = d["properties"]["Age-Friendly Environment Sub-Index"];
+            console.log(d["properties"]["Country"])
+            console.log(income)
+            console.log(health)
+            console.log(employment)
+            console.log(environment)
+            console.log((Math.pow(income,incomeWeight) * Math.pow(health,healthWeight) * Math.pow(employment,employmentWeight) * Math.pow(environment,environmentWeight)))
             return (to2dp(Math.pow(income,incomeWeight) * Math.pow(health,healthWeight) * Math.pow(employment,employmentWeight) * Math.pow(environment,environmentWeight)))})
         .attr("d", path)
         .on("mouseover", function(d){
@@ -94,7 +101,7 @@ function styleCountries(inWeight, heWeight, emWeight, enWeight) {
     var employment = $(this).attr("data-employment");
     var environment = $(this).attr("data-environment");
     var index = to2dp(Math.pow(income,inWeight) * Math.pow(health,heWeight) * Math.pow(employment,emWeight) * Math.pow(environment,enWeight));
-    var remapped = Math.floor(indexScale(index));
+    var remapped = Math.floor(indexScale(index+10));
     var viz_class = "q" + remapped + "-9 country";
     $(this).attr('class', viz_class);
     $(this).attr('data-index-score', index);
